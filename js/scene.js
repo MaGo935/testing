@@ -26,12 +26,6 @@ const wm = B.map((b, i) => {
   scene.add(m);
   return m;
 });
-const gun = new T.Mesh(
-  new T.BoxGeometry(0.1, 0.12, 0.55),
-  new T.MeshLambertMaterial({ color: 0x222222 }),
-);
-gun.position.set(0.25, -0.22, -0.5);
-cam.add(gun);
 function mk(id, team) {
   const g = new T.Group(),
     c = team === "T" ? 0xdd9933 : 0x4477ff;
