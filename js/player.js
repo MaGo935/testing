@@ -50,19 +50,17 @@ function shoot(t) {
   me.ammo--;
   beep();
   me.pitch += 0.006;
+  me.yaw += (Math.random() - 0.5) * 0.004;
+  kick();
   rc.setFromCamera({ x: 0, y: 0 }, cam);
   const h = rc.intersectObjects([
+    fl,
     ...wm,
     ...Object.values(others)
       .filter((o) => o.g.visible)
       .flatMap((o) => o.g.children),
   ])[0];
-  if (h && h.object.userData.pid)
-    net.send({
-      t: "hit",
-      id: h.object.userData.pid,
-      head: !!h.object.userData.head,
-    });
+  fire(h);
   if (me.ammo === 0) reload();
 }
 function move(dt) {

@@ -17,6 +17,11 @@ function loop(t) {
   $("st").textContent = me.alive
     ? `HP ${me.hp}   ${me.rel ? "RECARREGANDO" : me.ammo}/30`
     : "MORTO - renascendo...";
+  animWeapon(
+    dt,
+    me.alive && me.ground && (K.KeyW || K.KeyA || K.KeyS || K.KeyD),
+  );
+  updateFx(dt);
   ren.render(scene, cam);
 }
 requestAnimationFrame(loop);
